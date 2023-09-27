@@ -8,7 +8,5 @@ namespace NihonItarareApi.DTOs.Produto
         public string Descricao { get; set; } = "Sem Descrição";
         [Required]
         public double Preco { get; set; }
-        [Required]
-        public bool IsMateriaPrima { get; set; }
     }
 }

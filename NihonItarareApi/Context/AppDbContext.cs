@@ -20,6 +20,7 @@ namespace NihonItarareApi.Context
         public DbSet<Estoque> Estoque { get; set; }
         public DbSet<Item> Item { get; set; }
         public DbSet<Mesa> Mesa { get; set; }
+        public DbSet<ItemPedido> ItemPedido { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Produto> Produto { get; set; }
     }

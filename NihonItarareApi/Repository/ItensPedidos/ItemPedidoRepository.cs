@@ -2,22 +2,24 @@
 using NihonItarareApi.Context;
 using NihonItarareApi.Models;
 
-namespace NihonItarareApi.Repository.Pedidos
+namespace NihonItarareApi.Repository.ItensPedidos
 {
-    public class PedidoRepository : IPedidoRepository
+    public class ItemPedidoRepository : IItemPedidoRepository
     {
         private readonly AppDbContext _context;
 
-        public PedidoRepository(AppDbContext context)
+        public ItemPedidoRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public Pedido? ObterPedidoPorId(int id)
+        public ItemPedido? ObterItemPedidoPorId(int id)
         {
             try
             {
-                return _context.Pedido
+                return _context.ItemPedido
+                    .Include(ip => ip.Pedido)
+                    .Include(ip => ip.Item)
                     .FirstOrDefault(c => c.Id == id);
             }
             catch (Exception ex)
@@ -26,11 +28,14 @@ namespace NihonItarareApi.Repository.Pedidos
             }
         }
 
-        public IEnumerable<Pedido> ObterPedidos()
+        public IEnumerable<ItemPedido> ObterItensPedidos()
         {
             try
             {
-                return _context.Pedido.Include(p => p.Mesa).ToList();
+                return _context.ItemPedido
+                    .Include(ip => ip.Pedido)
+                    .Include(ip => ip.Item)
+                    .ToList();
             }
             catch (Exception ex)
             {
@@ -38,13 +43,13 @@ namespace NihonItarareApi.Repository.Pedidos
             }
         }
 
-        public Pedido? InserirPedido(Pedido pedido)
+        public ItemPedido? InserirItemPedido(ItemPedido itemPedido)
         {
             try
             {
-                _context.Pedido.Add(pedido);
+                _context.ItemPedido.Add(itemPedido);
                 _context.SaveChanges();
-                return pedido;
+                return itemPedido;
             }
             catch (Exception ex)
             {
@@ -52,11 +57,11 @@ namespace NihonItarareApi.Repository.Pedidos
             }
         }
 
-        public bool AlterarPedido(Pedido pedido)
+        public bool AlterarItemPedido(ItemPedido itemPedido)
         {
             try
             {
-                _context.Pedido.Update(pedido);
+                _context.ItemPedido.Update(itemPedido);
                 _context.SaveChanges();
                 return true;
             }
@@ -66,14 +71,14 @@ namespace NihonItarareApi.Repository.Pedidos
             }
         }
 
-        public bool DeletarPedido(int id)
+        public bool DeletarItemPedido(int id)
         {
             try
             {
-                var atual = ObterPedidoPorId(id);
+                var atual = ObterItemPedidoPorId(id);
                 if (atual != null)
                 {
-                    _context.Pedido.Remove(atual);
+                    _context.ItemPedido.Remove(atual);
                     _context.SaveChanges();
                     return true;
                 }

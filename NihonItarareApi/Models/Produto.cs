@@ -11,7 +11,5 @@ namespace NihonItarareApi.Models
         public string? Descricao { get; set; }
         [Required]
         public double Preco { get; set; }
-        [Required]
-        public bool IsMateriaPrima { get; set; }
     }
 }

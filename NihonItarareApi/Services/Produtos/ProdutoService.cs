@@ -24,7 +24,6 @@ namespace NihonItarareApi.Services.Produtos
             Produto produto = new()
             {
                 Descricao = inProduto.Descricao,
-                IsMateriaPrima = inProduto.IsMateriaPrima,
                 Preco = inProduto.Preco
             };
 
@@ -39,7 +38,6 @@ namespace NihonItarareApi.Services.Produtos
                 throw new Exception("Produto não encontrado");
 
             produto.Descricao = novoProduto.Descricao ?? produto.Descricao;
-            produto.IsMateriaPrima = novoProduto.IsMateriaPrima ?? produto.IsMateriaPrima;
             produto.Preco = novoProduto.Preco ?? produto.Preco;
 
             return _produtoRepository.AlterarProduto(produto);

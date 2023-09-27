@@ -7,7 +7,6 @@ namespace NihonItarareApi.DTOs.Pedido
     {
         [Required]
         public int Id { get; set; }
-        public int? ItemId { get; set; }
         public int? MesaId { get; set; }
         public FormaPagamentoEnum? FormaPagamento { get; set; }
         public StatusPedidoEnum? Status { get; set; }

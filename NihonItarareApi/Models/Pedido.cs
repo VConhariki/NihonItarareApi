@@ -7,8 +7,6 @@ namespace NihonItarareApi.Models
     {
         [Key]
         public int Id { get; set; }
-        public int? ItemId { get; set; }
-        public virtual Item? Item { get; set; }
         public int? MesaId { get; set; }
         public Mesa? Mesa { get; set; }
         public FormaPagamentoEnum? FormaPagamento{ get; set; }

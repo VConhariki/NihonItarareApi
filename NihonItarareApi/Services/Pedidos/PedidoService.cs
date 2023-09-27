@@ -8,16 +8,14 @@ using NihonItarareApi.Utils.Enums;
 namespace NihonItarareApi.Services.Pedidos
 {
     //TODO: Rever relação entre item -> pedido
-    public class PedidoService
+    public class PedidoService : IPedidoService
     {
         private readonly IPedidoRepository _pedidoRepository;
-        private readonly IItemRepository _itemRepository;
         private readonly IMesaRepository _mesaRepository;
 
-        public PedidoService(IPedidoRepository pedidoRepository, IItemRepository itemRepository, IMesaRepository mesaRepository)
+        public PedidoService(IPedidoRepository pedidoRepository, IMesaRepository mesaRepository)
         {
             _pedidoRepository = pedidoRepository;
-            _itemRepository = itemRepository;
             _mesaRepository = mesaRepository;
         }
 
@@ -37,6 +35,7 @@ namespace NihonItarareApi.Services.Pedidos
                 Mesa = mesa,
                 MesaId = inPedido.MesaId,
                 Total = 0,
+                FormaPagamento = inPedido.FormaPagamento,
                 Status = StatusPedidoEnum.Iniciado
             };
 
@@ -46,8 +45,23 @@ namespace NihonItarareApi.Services.Pedidos
         public bool AlterarPedido(InAlterarPedido novoPedido)
         {
             var pedido = _pedidoRepository.ObterPedidoPorId(novoPedido.Id);
+
             if (pedido == null)
                 throw new Exception("Pedido não encontrado");
+
+            if(novoPedido.MesaId != null)
+            {
+                var mesa = _mesaRepository.ObterMesaPorId(novoPedido.Id);
+                if(mesa == null)
+                    throw new Exception("Mesa não encontrada");
+
+                pedido.MesaId = mesa.Id;
+                pedido.Mesa = mesa;
+            }
+
+            pedido.Status = novoPedido.Status ?? pedido.Status;
+            pedido.Total = novoPedido.Total ?? pedido.Total;
+            pedido.FormaPagamento = novoPedido.FormaPagamento ?? pedido.FormaPagamento;
 
             return _pedidoRepository.AlterarPedido(pedido);
         }
