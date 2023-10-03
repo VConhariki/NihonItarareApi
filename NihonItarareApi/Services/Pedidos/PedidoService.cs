@@ -30,6 +30,9 @@ namespace NihonItarareApi.Services.Pedidos
             
             var mesa = _mesaRepository.ObterMesaPorId(inPedido.MesaId);
 
+            if (mesa == null)
+                throw new Exception("Mesa não encontrada");
+
             Pedido pedido = new()
             {
                 Mesa = mesa,
