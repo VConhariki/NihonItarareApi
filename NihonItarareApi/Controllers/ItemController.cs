@@ -33,7 +33,7 @@ namespace NihonItarareApi.Controllers
             }
             catch (Exception ex)
             {
-                return Problem(detail: ex.ToString(), statusCode: (int)HttpStatusCode.InternalServerError);
+                return Problem(detail: ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -51,7 +51,7 @@ namespace NihonItarareApi.Controllers
             }
             catch (Exception ex)
             {
-                return Problem(detail: ex.ToString(), statusCode: (int)HttpStatusCode.InternalServerError);
+                return Problem(detail: ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -73,7 +73,7 @@ namespace NihonItarareApi.Controllers
             }
             catch (Exception ex)
             {
-                return Problem(detail: ex.ToString(), statusCode: (int)HttpStatusCode.InternalServerError);
+                return Problem(detail: ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -95,7 +95,7 @@ namespace NihonItarareApi.Controllers
             }
             catch (Exception ex)
             {
-                return Problem(detail: ex.ToString(), statusCode: (int)HttpStatusCode.InternalServerError);
+                return Problem(detail: ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -112,7 +112,7 @@ namespace NihonItarareApi.Controllers
             }
             catch (Exception ex)
             {
-                return Problem(detail: ex.ToString(), statusCode: (int)HttpStatusCode.InternalServerError);
+                return Problem(detail: ex.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }
         }
     }
