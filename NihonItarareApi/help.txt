@@ -1,0 +1,17 @@
+dotnet --version
+dotnet tool install --global dotnet-ef
+dotnet ef database update
+
+git clone https://github.com/lplinta/NihonApp.git
+git clone https://github.com/VConhariki/RestauranteFront.git
+
+flutter --versionhttps://github.com/VConhariki/NihonItarareApi.git
+flutter upgrade --force
+
+postgres:
+username = postgres
+password = postgresql
+
+obs: 
+abrir no firefox
+caso dê erro no localhost usar: http://localhost:5218/swagger/index.html
