@@ -54,7 +54,7 @@ namespace NihonItarareApi.Services.Pedidos
 
             if(novoPedido.MesaId != null)
             {
-                var mesa = _mesaRepository.ObterMesaPorId(novoPedido.Id);
+                var mesa = _mesaRepository.ObterMesaPorId(novoPedido.MesaId ?? 0);
                 if(mesa == null)
                     throw new Exception("Mesa não encontrada");
 

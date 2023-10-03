@@ -18,6 +18,7 @@ namespace NihonItarareApi.Repository.Pedidos
             try
             {
                 return _context.Pedido
+                    .Include(p=>p.Mesa)
                     .FirstOrDefault(c => c.Id == id);
             }
             catch (Exception ex)
